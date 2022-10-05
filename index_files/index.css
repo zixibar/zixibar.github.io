@@ -1,0 +1,105 @@
+﻿.hd{width: 100%; height: 800px; background: #162774;min-width: 1005px; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #162774 40%, #0ea7ad 70%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(40%,#162774), color-stop(70%,#0ea7ad)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #162774 40%,#0ea7ad 70%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #162774 40%,#0ea7ad 70%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #162774 40%,#0ea7ad 70%); /* IE10+ */
+background: linear-gradient(135deg,  #162774 40%,#0ea7ad 70%); /* W3C */
+}
+.hd .cnt{width: 1004px; height: 100%; margin: 0 auto; overflow: hidden;}
+.hd .top{width: 100%; /*height: 60px;*/ overflow: hidden; line-height: 60px; font-size: 14px; }
+.hd .top .logo{/*width: 165px; height: 52px; background: url(../static/imgs/logo.png) no-repeat center;*/ display: block; text-decoration: none; margin: 8px auto;}
+.hd .rgt{width: 100%; height:573px;  overflow: hidden; position: relative;}
+.hd .rgt .img{width: 420px; height: 120px; margin:20px auto; background: url("../static/imgs/signup_text.png")/*tpa=http://xingcaisp.com/static/imgs/signup_text.png*/ no-repeat;}
+.hd .rgt .bg{width: 698px; height: 320px; margin:75px auto; background: url("../static/imgs/signup_img1.png")/*tpa=http://xingcaisp.com/static/imgs/signup_img1.png*/ no-repeat;}
+.hd .form{width: 300px; height: 360px; border-radius: 3px;  background: #ffffff; overflow:hidden; position: absolute; top: 170px; left: 50%; margin-left: -150px; box-shadow: 0 3px 5px 0 rgba(0,0,0,0.5); -moz-box-shadow: 0 3px 5px 0 rgba(0,0,0,0.5); -webkit-box-shadow: 0 3px 5px 0 rgba(0,0,0,0.5); -ms-box-shadow: 0 3px 5px 0 rgba(0,0,0,0.5); -o-box-shadow: 0 3px 5px 0 rgba(0,0,0,0.5); }
+.hd .form .ttl{width: 100%; height: 24px;}
+.hd .form .row{width: 240px; height: 42px; margin: 0 auto 25px;}
+.hd .form .row .long{width: 238px;}
+.hd .form .row .short{width: 140px; float: left;}
+.hd .form .row .code{width: 90px; height: 40px; margin-left: 8px; border-radius: 2px; float: left; border: none;}
+.hd .form .row .btn{width: 240px; height: 42px; display: block; background: url("../imgs/signup_btn.png")/*tpa=http://xingcaisp.com/imgs/signup_btn.png*/ no-repeat; border: none; cursor: pointer;}
+.hd .form .row .btn:hover{background-position: 0 -50px;}
+.hd .succ{width: 960px; height: 518px; border-radius: 3px;  background: #ffffff; overflow:hidden;  margin: 25px auto; box-shadow: 0 3px 5px 0 rgba(0,0,0,0.5); -moz-box-shadow: 0 3px 5px 0 rgba(0,0,0,0.5); -webkit-box-shadow: 0 3px 5px 0 rgba(0,0,0,0.5); -ms-box-shadow: 0 3px 5px 0 rgba(0,0,0,0.5); -o-box-shadow: 0 3px 5px 0 rgba(0,0,0,0.5); }
+.hd .succ .img{width: 410px; height: 410px; margin: 15px auto; background:url("../static/imgs/signup_img2.gif")/*tpa=http://xingcaisp.com/static/imgs/signup_img2.gif*/ no-repeat; }
+.hd .succ .btn{width: 240px; height: 42px; display: block; background: url("../static/imgs/signup_btn2.png")/*tpa=http://xingcaisp.com/static/imgs/signup_btn2.png*/ no-repeat; border: none; cursor: pointer; margin: 10px auto;}
+.hd .succ .btn:hover{background-position: 0 -50px;}
+
+.indc{width: 100%; height: 328px; border-bottom: 1px solid #e5e9eb;}
+.indc .cnt{width: 1003px; height: 100%; margin: 0 auto; overflow: hidden;border-left: 1px solid #e5e9eb;}
+.indc .col{width: 330px; height: 100%; border-right: 1px solid #e5e9eb; float: left;}
+.indc .col .top{width: 100%; height: 135px; overflow: hidden;}
+.indc .col .top .icon{width: 72px; height: 72px; margin: 40px auto 0px; background: url("../static/imgs/caifu_img.png")/*tpa=http://xingcaisp.com/static/imgs/caifu_img.png*/ no-repeat; }
+.indc .col .top .i_1{background-position: 0 -202px;}
+.indc .col .top .i_2{background-position: -72px -202px;}
+.indc .col .top .i_3{width:77px; background-position: -144px -202px;}
+.indc .col .ttl{width:240px; height: 32px; line-height: 32px; font-size: 16px; color:#181818;  text-align: center; margin: 0 auto; } 
+.indc .col .txt{width:240px; line-height: 30px; font-size: 14px; color:#989898;  margin: 0 auto; } 
+
+.footer{
+	width:  100%;
+	height: 200px;
+    background: #fff;}
+.footer .friends{
+	width:         1004px;
+	height:        109px;
+	background:    url("../static/imgs/friends.jpg")/*tpa=http://xingcaisp.com/static/imgs/friends.jpg*/ no-repeat center;
+	margin:        0 auto;
+	border-bottom: 1px solid #e2e6e8;}
+.footer .footerbottom{
+	width:  100%;
+	height: 90px;}
+.footer .footerbottom .content{
+    width:    1000px;
+    height:   100%;
+    margin:   0 auto;
+    overflow: hidden;}
+.footer .footerbottom .left{
+	width:  300px;
+	height: 100%;
+	float:  left;}
+.footer .footerbottom .left .text{
+	width:  100%;
+	height: 18px;
+	margin: 15px 0 10px 0;
+    text-align: left;
+    font-size: 14px;
+    color: #c9c9c9;}
+.footer .footerbottom .left .brow{
+    width:    100%;
+    height:   34px;
+    overflow: hidden;}
+.footer .footerbottom .left .brow .ico{
+    width:           34px; 
+    height:          34px; 
+    margin-right:    18px; 
+    background:      url("../static/imgs/caifu_img.png")/*tpa=http://xingcaisp.com/static/imgs/caifu_img.png*/ no-repeat;
+    display:         block; 
+    text-decoration: none; 
+    float:           left;}
+.footer .footerbottom .left .brow .i360{background-position: 0 -100px;}
+.footer .footerbottom .left .brow .sougou{background-position: -34px -100px;}
+.footer .footerbottom .left .brow .ie{background-position: 0 -134px;}
+.footer .footerbottom .left .brow .chrome{background-position: -34px -134px;}
+.footer .footerbottom .left .brow .firefox{background-position: 0 -168px;}
+.footer .footerbottom .right{
+	width:  300px;
+	height: 100%;
+	float: right;}
+.footer .footerbottom .right .logo{
+	width:           165px; 
+	height:          52px; 
+	margin-top:      8px;
+	background:      url("../static/imgs/ft_logo.png")/*tpa=http://xingcaisp.com/static/imgs/ft_logo.png*/ no-repeat; 
+	display:         block; 
+	text-decoration: none; 
+	float:           right; 
+	clear:           left;}
+.footer .footerbottom .right .copyright{
+	width:        100%; 
+	height:       18px; 
+	line-height:  18px; 
+	float:        left; 
+	font-size:    12px; 
+	color:        #c9c9c9; 
+	text-align:   right;}
