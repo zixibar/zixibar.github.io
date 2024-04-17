@@ -62,7 +62,7 @@
           <div class="d-flex col-8 flex-column justify-content-start">
             <div class="d-flex align-items-center">
               <a target="_blank" class="link-success" href="${item.url}">${
-              item.url
+              item.title
             }</a>
               <div class="fw-light ps-3" >
                 <div data-ping="${item.url}">
