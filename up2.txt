@@ -1,6 +1,6 @@
 {
 	"最新版本":	1722526639,
-	"更新日志":	"暂无",
+	"更新日志":	"测试版",
 	"滚动公告":	"SvipCun2.2.0测试版",
 	"域名组":	"https://svipcun.com/|https://zixibar.net/|https://svipcun.eu.org/",
 	"备注":	"up.png|up.txt",
