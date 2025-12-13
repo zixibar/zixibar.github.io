@@ -23,7 +23,7 @@ window.Config = {
   // 导航栏菜单
   Navi: [
     {
-      text: 'Svipcun 官网',
+      text: 'Svip村',
       url: 'https://svipcun.com/'
     },
     {
