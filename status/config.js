@@ -2,7 +2,7 @@
 window.Config = {
 
   // 站点名
-  SiteName: 'Svipcun 服务器状态监控',
+  SiteName: 'Svipcun状态监控',
 
   // 站点链接
   SiteUrl: '/',
