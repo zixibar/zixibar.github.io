@@ -2,13 +2,13 @@
 window.Config = {
 
   // 站点名
-  SiteName: 'Svip村 服务器状态监控',
+  SiteName: 'Svipcun 服务器状态监控',
 
   // 站点链接
   SiteUrl: '/',
 
   // UptimeRobot Api Keys
-  // 支持 Monitor-Specific 和 Read-Only 两只 Api Key
+  // 支持 Monitor-Specific 和 Read-Only 两种 Api Key
   ApiKeys: [
     'ur2523928-aa791a010b5f4b5df4486aff',
   ],
@@ -17,14 +17,13 @@ window.Config = {
   ShowLink: false,
 
   // 日志天数
-  // 虽然免费版说仅保存60天日志，但测试好像API可以获取90天的
-  // 不过时间不要设置太长，容易卡，接口请求也容易失败
+  // 默认免费版保留 30 天，付费可取 90 天；不要设置太久以免接口失败
   CountDays: 30,
 
   // 导航栏菜单
   Navi: [
     {
-      text: 'Svip村',
+      text: 'Svipcun 官网',
       url: 'https://svipcun.com/'
     },
     {
