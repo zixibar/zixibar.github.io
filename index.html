@@ -1,667 +1,430 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Svip村-地址发布页，收藏我回家不迷路！</title>
-    <meta name="description" content="SVIP村【原自习吧VIP共享计划】(svipcun.com)提供各种网站VIP账号登录服务,通过SVIP村可以获取及查看各网站VIP专属内容">
-    <meta name="keywords" content="SVIP村,svipcun,VIP共享,VIP租用,VIP账号共享,超级账户,高级账号,VIP浏览器,永久VIP,VIP共享计划,VIP分享,超级会员账号,钻石会员账号,原自习吧">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        @font-face {
-            font-family: 'HarmonyOS Sans SC';
-            src: url('/static/HarmonyOS_Sans_SC_Regular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        :root {
-            --primary-color: #3b82f6;
-            --secondary-color: #60a5fa;
-            --text-color: #1f2937;
-            --card-background: rgba(255, 255, 255, 0.9);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --background-light: linear-gradient(-45deg, #e6f2ff, #fff0f5, #f0f7ff, #fff5e6);
-            --background-dark: linear-gradient(-45deg, #1a202c, #2d3748, #4a5568, #2d3748);
-        }
-        .dark-mode {
-            --primary-color: #60a5fa;
-            --secondary-color: #3b82f6;
-            --text-color: #e2e8f0;
-            --card-background: rgba(26, 32, 44, 0.9);
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: 'HarmonyOS Sans SC', sans-serif;
-            color: var(--text-color);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: var(--background-light);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            overflow-x: hidden;
-            font-size: 16px;
-            transition: var(--transition);
-        }
-        body.dark-mode {
-            background: var(--background-dark);
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .wrapper {
-            padding: 2rem;
-            width: 100%;
-            max-width: 600px;
-            position: relative;
-        }
-        .main {
-            background-color: var(--card-background);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 2.5rem;
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-        }
-        .main:hover {
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-        h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-        ul {
-            list-style-type: none;
-            margin-bottom: 1.5rem;
-        }
-        li {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background-color: rgba(248, 250, 252, 0.8);
-            border-radius: 10px;
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-            padding-top: 1.5rem;
-        }
-        .dark-mode li {
-            background-color: rgba(26, 32, 44, 0.8);
-        }
-        li:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        li a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-        }
-        li a:hover {
-            color: var(--secondary-color);
-        }
-        li a i {
-            margin-right: 0.5rem;
-            font-size: 1.2em;
-        }
-        .notice {
-            background-color: rgba(230, 242, 255, 0.8);
-            border-left: 4px solid var(--primary-color);
-            padding: 1rem;
-            margin-top: 1rem;
-            border-radius: 10px;
-            transition: var(--transition);
-        }
-        .dark-mode .notice {
-            background-color: rgba(44, 55, 72, 0.8);
-        }
-        .notice:hover {
-            background-color: rgba(230, 242, 255, 1);
-        }
-        .dark-mode .notice:hover {
-            background-color: rgba(44, 55, 72, 1);
-        }
-        .footer {
-            margin-top: 2rem;
-            text-align: center;
-            color: var(--text-color);
-            font-weight: 300;
-            opacity: 0.8;
-            transition: var(--transition);
-        }
-        .footer:hover {
-            opacity: 1;
-        }
-        .bookmark-btn {
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .bookmark-btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        .bookmark-btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
-        }
-        .bookmark-btn:focus:not(:active)::after {
-            animation: ripple 1s ease-out;
-        }
-        @keyframes ripple {
-            0% { transform: scale(0, 0); opacity: 1; }
-            20% { transform: scale(25, 25); opacity: 1; }
-            100% { opacity: 0; transform: scale(40, 40); }
-        }
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        .bg-animation span {
-            position: absolute;
-            display: block;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            animation: move 25s infinite linear;
-        }
-        .dark-mode .bg-animation span {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .bg-animation span:nth-child(1) { top: 20%; left: 20%; animation-duration: 15s; }
-        .bg-animation span:nth-child(2) { top: 60%; left: 80%; animation-duration: 17s; width: 40px; height: 40px; }
-        .bg-animation span:nth-child(3) { top: 40%; left: 40%; animation-duration: 19s; }
-        .bg-animation span:nth-child(4) { top: 80%; left: 10%; animation-duration: 21s; }
-        @keyframes move {
-            0% { transform: translateX(0) translateY(0) rotate(0); opacity: 1; border-radius: 0; }
-            100% { transform: translateX(-1000px) translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
-        }
-        @media (max-width: 768px) {
-            body {
-                font-size: calc(14px + 0.390625vw);
-            }
-            .main {
-                padding: 2rem;
-            }
-            h1 {
-                font-size: 2rem;
-            }
-        }
-        .ms-display {
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-size: 0.7em;
-            padding: 2px 5px;
-            border-top-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-        .ms-checking {
-            background-color: #ffeb3b;
-            color: black;
-        }
-        .ms-normal {
-            background-color: #4CAF50;
-        }
-        .ms-error {
-            background-color: #f44336;
-        }
-        .status-badge {
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            margin-left: 10px;
-            color: white;
-        }
-        .status-normal {
-            background-color: #4CAF50;
-        }
-        .status-error {
-            background-color: #f44336;
-        }
-        .status-checking {
-            background-color: #ffeb3b;
-            color: black;
-        }
-        li.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        li.disabled a {
-            pointer-events: none;
-        }
-        .mode-toggle {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 10;
-        }
-        .mode-toggle:hover {
-            color: var(--primary-color);
-        }
-        #stats-container {
-            background-color: var(--card-background);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
-        #stats-container:hover {
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-        #last-checked-time {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-        .stats-row {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin-top: 10px;
-        }
-        .stat-item {
-            text-align: center;
-        }
-        .stat-value {
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-        .stat-label {
-            font-size: 0.9em;
-            color: var(--text-color);
-            opacity: 0.8;
-        }
-        .icon-clock, .icon-check, .icon-times {
-            margin-right: 5px;
-        }
-        .icon-check {
-            color: #4CAF50;
-        }
-        .icon-times {
-            color: #f44336;
-        }
-        .url-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-        @media (max-width: 768px) {
-        body {
-            font-size: 14px;
-        }
-        .wrapper {
-            padding: 1rem;
-        }
-        .main {
-            padding: 1.5rem;
-        }
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .bookmark-btn {
-            padding: 0.75rem;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-        li {
-            padding: 0.75rem;
-            margin-bottom: 0.5rem;
-            padding-top: 1.25rem;
-        }
-        .url-content {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .url-content span:first-child {
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
-        }
-        li a {
-            font-size: 0.8rem;
-        }
-        .status-badge {
-            font-size: 0.7em;
-            padding: 1px 4px;
-            margin-left: 0;
-            margin-top: 0.25rem;
-        }
-        .ms-display {
-            font-size: 0.6em;
-            padding: 1px 3px;
-        }
-        .notice {
-            padding: 0.75rem;
-            font-size: 0.8rem;
-        }
-        #stats-container {
-            padding: 10px;
-            margin-top: 15px;
-        }
-        #last-checked-time {
-            font-size: 0.9em;
-        }
-        .stat-value {
-            font-size: 1.2em;
-        }
-        .stat-label {
-            font-size: 0.8em;
-        }
-        .footer {
-            margin-top: 1.5rem;
-            font-size: 0.8rem;
-        }
-        .mode-toggle {
-            font-size: 1.2rem;
-        }
-    }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Svip村-地址发布页，收藏我回家不迷路！</title>
+<meta name="description" content="SVIP村【原自习吧VIP共享计划】(svipcun.com)提供各种网站VIP账号登录服务,通过SVIP村可以获取及查看各网站VIP专属内容">
+<meta name="keywords" content="SVIP村,svipcun,VIP共享,VIP租用,VIP账号共享,超级账户,高级账号,VIP浏览器,永久VIP,VIP共享计划,VIP分享,超级会员账号,钻石会员账号,原自习吧">
+<meta name="theme-color" content="#3b82f6">
+<link rel="icon" href="/favicon.ico">
+<style>
+@font-face{
+  font-family:'HarmonyOS Sans SC';
+  src:url('/static/HarmonyOS_Sans_SC_Regular.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap;
+}
+:root{
+  --bg-a:#e6f2ff; --bg-b:#fff0f5; --bg-c:#f0f7ff; --bg-d:#fff5e6;
+  --card:rgba(255,255,255,.86);
+  --text:#1f2937; --muted:#64748b;
+  --primary:#3b82f6; --primary-2:#60a5fa;
+  --line:rgba(148,163,184,.28);
+  --ok:#10b981; --warn:#f59e0b; --bad:#ef4444; --unk:#94a3b8;
+  --shadow:0 10px 30px rgba(15,23,42,.10);
+  --row:rgba(248,250,252,.85);
+}
+html[data-theme="dark"]{
+  --bg-a:#0f172a; --bg-b:#111827; --bg-c:#0b1220; --bg-d:#131a2b;
+  --card:rgba(23,31,45,.88);
+  --text:#e2e8f0; --muted:#94a3b8;
+  --primary:#60a5fa; --primary-2:#93c5fd;
+  --line:rgba(148,163,184,.18);
+  --shadow:0 10px 30px rgba(0,0,0,.5);
+  --row:rgba(15,23,42,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:"HarmonyOS Sans SC","PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  color:var(--text); line-height:1.6; min-height:100vh;
+  display:flex; justify-content:center; align-items:center;
+  background:linear-gradient(-45deg,var(--bg-a),var(--bg-b),var(--bg-c),var(--bg-d));
+  background-size:400% 400%; animation:bgmove 18s ease infinite;
+  padding:24px 16px; font-size:16px; overflow-x:hidden;
+  transition:background .4s,color .3s;
+}
+@keyframes bgmove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.wrap{width:100%;max-width:620px;position:relative}
+.card{
+  background:var(--card); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line); border-radius:22px; padding:28px 26px;
+  box-shadow:var(--shadow); transition:box-shadow .3s;
+}
+.card:hover{box-shadow:0 16px 40px rgba(15,23,42,.16)}
+h1{
+  font-size:26px; font-weight:700; text-align:center; color:var(--primary);
+  letter-spacing:.5px; margin-bottom:4px;
+}
+.sub{text-align:center;font-size:13px;color:var(--muted);margin-bottom:20px}
+.theme-btn{
+  position:absolute;top:20px;right:18px;width:36px;height:36px;border:none;border-radius:10px;
+  background:transparent;color:var(--muted);cursor:pointer;display:grid;place-items:center;
+  transition:.25s;z-index:5
+}
+.theme-btn:hover{background:var(--row);color:var(--primary)}
+.bookmark{
+  width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px;border:none;border-radius:13px;cursor:pointer;
+  background:linear-gradient(135deg,var(--primary),var(--primary-2));
+  color:#fff;font-size:15px;font-weight:600;letter-spacing:.3px;
+  box-shadow:0 6px 18px rgba(59,130,246,.32); transition:transform .2s,box-shadow .25s;
+  margin-bottom:22px;font-family:inherit
+}
+.bookmark:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(59,130,246,.42)}
+.bookmark:active{transform:translateY(0) scale(.99)}
+ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+li{
+  position:relative; background:var(--row); border:1px solid var(--line);
+  border-left:4px solid var(--unk); border-radius:14px; padding:14px 15px;
+  transition:transform .25s,box-shadow .25s,border-color .25s,opacity .25s
+}
+li:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(15,23,42,.10)}
+li[data-state="ok"]{border-left-color:var(--ok)}
+li[data-state="blocked"]{border-left-color:var(--warn)}
+li[data-state="down"]{border-left-color:var(--bad)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.meta{min-width:0;flex:1}
+.name{display:block;font-weight:600;font-size:15px;margin-bottom:2px}
+.link{
+  display:inline-flex;align-items:center;gap:5px;color:var(--primary);
+  font-size:13px;text-decoration:none;word-break:break-all;line-height:1.4
+}
+.link:hover{color:var(--primary-2);text-decoration:underline}
+.link svg{flex:0 0 auto;opacity:.75}
+.state{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex:0 0 auto}
+.badge{
+  font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;
+  background:var(--unk);color:#fff;white-space:nowrap
+}
+.badge[data-state="ok"]{background:var(--ok)}
+.badge[data-state="blocked"]{background:var(--warn)}
+.badge[data-state="down"]{background:var(--bad)}
+.ms{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.stats{
+  margin-top:20px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;
+  background:var(--row)
+}
+.stats-head{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  font-size:13px;color:var(--muted);margin-bottom:10px;flex-wrap:wrap
+}
+.stats-head strong{color:var(--text);font-weight:600}
+.refresh{
+  border:1px solid var(--line);background:transparent;color:var(--primary);
+  font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;cursor:pointer;
+  font-family:inherit;transition:.2s
+}
+.refresh:hover{background:var(--primary);color:#fff;border-color:transparent}
+.refresh:disabled{opacity:.5;cursor:progress}
+.counts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+.count b{display:block;font-size:21px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.25}
+.count span{font-size:11px;color:var(--muted)}
+.count.ok b{color:var(--ok)} .count.bad b{color:var(--bad)} .count.unk b{color:var(--unk)}
+.notice{
+  display:flex;gap:9px;align-items:flex-start;margin-top:14px;padding:11px 14px;
+  border-radius:12px;background:rgba(59,130,246,.09);
+  border-left:3px solid var(--primary);font-size:13px;color:var(--muted)
+}
+.notice svg{flex:0 0 auto;margin-top:2px;color:var(--primary)}
+.stale{margin-top:10px;font-size:12px;color:var(--warn);display:none}
+.stale.show{display:block}
+.foot{margin-top:22px;text-align:center;font-size:12px;color:var(--muted);opacity:.85}
+@media (max-width:520px){
+  body{font-size:15px;padding:16px 12px}
+  .card{padding:22px 16px;border-radius:18px}
+  h1{font-size:20px}
+  .sub{font-size:12px;margin-bottom:16px}
+  .bookmark{padding:11px;font-size:14px;margin-bottom:18px}
+  li{padding:12px}
+  .row{gap:8px}
+  .name{font-size:14px}
+  .link{font-size:11px}
+  .badge{font-size:11px;padding:2px 8px}
+  .ms{font-size:10px}
+  .count b{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
 </head>
 <body>
-    <div class="bg-animation">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+<div class="wrap">
+  <button class="theme-btn" id="themeBtn" aria-label="切换主题"></button>
+  <main class="card">
+    <h1>Svip村-地址发布页</h1>
+    <p class="sub">收藏本页，线路变更不迷路</p>
+
+    <button class="bookmark" id="bookmarkBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+      Ctrl+D 收藏本页到浏览器收藏夹
+    </button>
+
+    <ul id="urlList">
+      <li data-key="main" data-url="https://svipcun.com/" data-state="unknown">
+        <div class="row">
+          <div class="meta">
+            <span class="name">SVIP村（主）</span>
+            <a class="link" href="https://svipcun.com/" target="_blank" rel="noopener">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+              svipcun.com
+            </a>
+          </div>
+          <div class="state">
+            <span class="badge" data-state="unknown">待检测</span>
+            <span class="ms">—</span>
+          </div>
+        </div>
+      </li>
+
+      <li data-key="backup" data-url="https://zixibar.net/" data-state="unknown">
+        <div class="row">
+          <div class="meta">
+            <span class="name">SVIP村（备）</span>
+            <a class="link" href="https://zixibar.net/" target="_blank" rel="noopener">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+              zixibar.net
+            </a>
+          </div>
+          <div class="state">
+            <span class="badge" data-state="unknown">待检测</span>
+            <span class="ms">—</span>
+          </div>
+        </div>
+      </li>
+
+      <li data-key="tg" data-url="https://t.me/+BqpS4kl16EkzNGZl" data-state="unknown">
+        <div class="row">
+          <div class="meta">
+            <span class="name">公告频道</span>
+            <a class="link" href="https://t.me/+BqpS4kl16EkzNGZl" target="_blank" rel="noopener">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+              t.me 频道
+            </a>
+          </div>
+          <div class="state">
+            <span class="badge" data-state="unknown">待检测</span>
+            <span class="ms">—</span>
+          </div>
+        </div>
+      </li>
+
+      <li data-key="status" data-url="https://zixibar.github.io/status/" data-state="unknown">
+        <div class="row">
+          <div class="meta">
+            <span class="name">状态监控</span>
+            <a class="link" href="https://zixibar.github.io/status/" target="_blank" rel="noopener">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+              zixibar.github.io/status
+            </a>
+          </div>
+          <div class="state">
+            <span class="badge" data-state="unknown">待检测</span>
+            <span class="ms">—</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="stats">
+      <div class="stats-head">
+        <span>最后检测：<strong id="lastChecked">—</strong></span>
+        <button class="refresh" id="refreshBtn">重新检测</button>
+      </div>
+      <div class="counts">
+        <div class="count ok"><b id="cntOk">0</b><span>正常</span></div>
+        <div class="count bad"><b id="cntBad">0</b><span>异常</span></div>
+        <div class="count unk"><b id="cntUnk">0</b><span>未知</span></div>
+      </div>
+      <div class="stale" id="staleTip">检测数据已超过 40 分钟未更新，仅供参考。</div>
     </div>
-    <div class="wrapper">
-        <button class="mode-toggle" id="mode-toggle">
-            <i class="fas fa-moon"></i>
-        </button>
-        <main class="main">
-            <h1>Svip村-地址发布页</h1>
-            <button class="bookmark-btn">
-                <i class="fas fa-bookmark"></i> Ctrl+D 收藏本页到浏览器收藏夹
-            </button>
-            <ul id="url-list">
-                <li data-url="https://svipcun.com/">
-                    <span class="ms-display">-ms</span>
-                    <div class="url-content">
-                        <span>SVIP村（主）</span>
-                        <a href="https://svipcun.com/" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> https://svipcun.com
-                        </a>
-                        <span class="status-badge status-checking">检测中...</span>
-                    </div>
-                </li>
-                <li data-url="https://zixibar.net/">
-                    <span class="ms-display">-ms</span>
-                    <div class="url-content">
-                        <span>SVIP村（备）</span>
-                        <a href="https://zixibar.net/" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> https://zixibar.net
-                        </a>
-                        <span class="status-badge status-checking">检测中...</span>
-                    </div>
-                </li>
-                <li data-url="https://telegram.org/">
-                    <span class="ms-display">-ms</span>
-                    <div class="url-content">
-                        <span>公告频道</span>
-                        <a href="https://t.me/+BqpS4kl16EkzNGZl" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> https://t.me/+BqpS4kl16EkzNGZl
-                        </a>
-                        <span class="status-badge status-checking">检测中...</span>
-                    </div>
-                    </li>
-                <li data-url="https://zixibar.github.io/status/">
-                    <span class="ms-display">-ms</span>
-                    <div class="url-content">
-                        <span>状态监控</span>
-                        <a href="https://zixibar.github.io/status/" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> https://zixibar.github.io
-                        </a>
-                        <span class="status-badge status-checking">检测中...</span>
-                    </div>
-                </li>
-            </ul>
-            <div class="notice">
-                <i class="fas fa-info-circle"></i>部分节点无法访问，请更换！
-            </div>
-            <div id="stats-container"></div>
-        </main>
-        <footer class="footer">
-            <p>&copy; 2025 Svip村-保留所有权利。</p>
-        </footer>
+
+    <div class="notice">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <span>状态由服务器侧定时探测，代表“机房能否访问”，不代表你的本地网络。部分节点无法访问时请切换其他线路。</span>
     </div>
+  </main>
+  <footer class="foot">&copy; 2025 Svip村 - 保留所有权利</footer>
+</div>
 
 <script>
-function updateUrlStatus(li, isAccessible, duration) {
-    const statusBadge = li.querySelector('.status-badge');
-    const msDisplay = li.querySelector('.ms-display');
-    li.classList.remove('disabled');
+(function () {
+  'use strict';
 
-    let statusClass;
-    if (isAccessible) {
-        statusBadge.textContent = '正常';
-        statusClass = 'status-normal';
+  /* ===== 配置 ===== */
+  // 可选：Cloudflare Worker 实时探测接口（留空则只读定时任务生成的结果）
+  // 例：'https://svip-status.xxx.workers.dev'
+  var REALTIME_API = '';
+  var STALE_MS = 40 * 60 * 1000;
+  var AUTO_REFRESH_MS = 3 * 60 * 1000;
+
+  var LABEL = { ok: '正常', blocked: '被拦截', down: '无法访问', unknown: '未知' };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var list = $('urlList');
+  var items = Array.prototype.slice.call(list.querySelectorAll('li'));
+
+  /* ===== 主题 ===== */
+  var SUN = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  var MOON = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+
+  function applyTheme(dark) {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    $('themeBtn').innerHTML = dark ? SUN : MOON;
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', dark ? '#0f172a' : '#3b82f6');
+    try { localStorage.setItem('svip-theme', dark ? 'dark' : 'light'); } catch (e) {}
+  }
+
+  (function initTheme() {
+    var saved = null;
+    try { saved = localStorage.getItem('svip-theme'); } catch (e) {}
+    if (saved === 'dark' || saved === 'light') return applyTheme(saved === 'dark');
+    applyTheme(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  })();
+
+  $('themeBtn').addEventListener('click', function () {
+    applyTheme(document.documentElement.getAttribute('data-theme') !== 'dark');
+  });
+
+  /* ===== 收藏 ===== */
+  $('bookmarkBtn').addEventListener('click', function () {
+    var ua = navigator.userAgent.toLowerCase();
+    var key = ua.indexOf('mac') !== -1 ? 'Command/Cmd' : 'Ctrl';
+    if (window.sidebar && window.sidebar.addPanel) {
+      window.sidebar.addPanel(document.title, location.href, '');
+    } else if (window.external && 'AddFavorite' in window.external) {
+      window.external.AddFavorite(location.href, document.title);
     } else {
-        li.classList.add('disabled');
-        statusBadge.textContent = '无法访问';
-        statusClass = 'status-error';
+      alert('请按 ' + key + ' + D 将本页加入收藏夹。');
     }
+  });
 
-    statusBadge.className = `status-badge ${statusClass}`;
-    msDisplay.textContent = duration + 'ms';
-    msDisplay.className = `ms-display ms-${statusClass.split('-')[1]}`;
-}
-
-function checkUrl(url, li) {
-    return new Promise((resolve) => {
-        const img = new Image();
-        let isResolved = false;
-        const startTime = performance.now();
-
-        const timeoutId = setTimeout(() => {
-            if (!isResolved) {
-                updateUrlStatus(li, false, 5000);
-                isResolved = true;
-                resolve(false);
-            }
-        }, 5000); // 5秒超时
-
-        img.onload = function() {
-            if (!isResolved) {
-                clearTimeout(timeoutId);
-                const endTime = performance.now();
-                const duration = Math.round(endTime - startTime);
-                updateUrlStatus(li, true, duration);
-                isResolved = true;
-                resolve(true);
-            }
-        };
-
-        img.onerror = function() {
-            if (!isResolved) {
-                clearTimeout(timeoutId);
-                const endTime = performance.now();
-                const duration = Math.round(endTime - startTime);
-                updateUrlStatus(li, false, duration);
-                isResolved = true;
-                resolve(false);
-            }
-        };
-
-        // 添加一个随机参数来避免缓存
-        img.src = url + '/favicon.ico?' + new Date().getTime();
+  /* ===== 数据源 ===== */
+  // 定时任务生成 status.js：window.__PROBE_STATUS__ = {...}
+  function loadLocalStatus() {
+    return new Promise(function (resolve) {
+      var s = document.createElement('script');
+      s.src = './status.js?t=' + Date.now();
+      s.async = true;
+      s.onload = function () { resolve(window.__PROBE_STATUS__ || null); };
+      s.onerror = function () { resolve(null); };
+      document.head.appendChild(s);
     });
-}
+  }
 
-async function checkAllUrls() {
-    const urlList = document.getElementById('url-list');
-    const listItems = urlList.querySelectorAll('li');
-    let accessibleCount = 0;
-    let inaccessibleCount = 0;
+  function loadRealtime() {
+    var q = items.map(function (li) {
+      return 'u=' + encodeURIComponent(li.dataset.url);
+    }).join('&');
+    return fetch(REALTIME_API + (REALTIME_API.indexOf('?') === -1 ? '?' : '&') + q, { cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      });
+  }
 
-    const checkPromises = Array.from(listItems).map(li => {
-        const url = li.dataset.url;
-        const statusBadge = li.querySelector('.status-badge');
-        const msDisplay = li.querySelector('.ms-display');
-        statusBadge.textContent = '检测中...';
-        statusBadge.className = 'status-badge status-checking';
-        msDisplay.className = 'ms-display ms-checking';
-        msDisplay.textContent = '-ms';
-        return checkUrl(url, li);
-    });
+  /* ===== 渲染 ===== */
+  function fmtAgo(ts) {
+    if (!ts) return '—';
+    var d = new Date(ts);
+    if (isNaN(d.getTime())) return '—';
+    var diff = Date.now() - d.getTime();
+    var txt;
+    if (diff < 60000) txt = '刚刚';
+    else if (diff < 3600000) txt = Math.floor(diff / 60000) + ' 分钟前';
+    else if (diff < 86400000) txt = Math.floor(diff / 3600000) + ' 小时前';
+    else txt = Math.floor(diff / 86400000) + ' 天前';
+    var hh = ('0' + d.getHours()).slice(-2);
+    var mm = ('0' + d.getMinutes()).slice(-2);
+    return hh + ':' + mm + '（' + txt + '）';
+  }
 
-    const results = await Promise.all(checkPromises);
-    results.forEach(isAccessible => {
-        if (isAccessible) {
-            accessibleCount++;
-        } else {
-            inaccessibleCount++;
-        }
-    });
+  function paint(li, rec) {
+    var state = rec && rec.state ? rec.state : 'unknown';
+    if (!LABEL[state]) state = 'unknown';
+    li.dataset.state = state;
 
-    updateLastCheckedTimeAndStats(accessibleCount, inaccessibleCount);
-}
+    var badge = li.querySelector('.badge');
+    badge.dataset.state = state;
+    badge.textContent = LABEL[state];
 
-function updateLastCheckedTimeAndStats(accessibleCount, inaccessibleCount) {
-    const now = new Date();
-    const timeString = now.toLocaleTimeString();
-
-    document.getElementById('stats-container').innerHTML = `
-        <div id="last-checked-time">
-            <i class="fas fa-clock icon-clock"></i> 最后检测时间: ${timeString}
-        </div>
-        <div class="stats-row">
-            <div class="stat-item">
-                <div class="stat-value">
-                    <i class="fas fa-check icon-check"></i>${accessibleCount}
-                </div>
-                <div class="stat-label">正常数量</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value">
-                    <i class="fas fa-times icon-times"></i>${inaccessibleCount}
-                </div>
-                <div class="stat-label">无法访问</div>
-            </div>
-        </div>
-    `;
-}
-
-// 初始检查
-checkAllUrls();
-
-// 每1分钟检查一次
-setInterval(checkAllUrls, 60 * 1000);
-
-// 暗黑模式切换
-const modeToggle = document.getElementById('mode-toggle');
-const body = document.body;
-const icon = modeToggle.querySelector('i');
-
-function setDarkMode(isDark) {
-    if (isDark) {
-        body.classList.add('dark-mode');
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-        localStorage.setItem('darkMode', 'enabled');
+    var ms = li.querySelector('.ms');
+    if (state === 'unknown') {
+      ms.textContent = '—';
+    } else if (rec && rec.ms != null) {
+      var extra = rec.status ? ' · HTTP ' + rec.status : '';
+      if (rec.note) extra = ' · ' + rec.note;
+      ms.textContent = rec.ms + 'ms' + extra;
     } else {
-        body.classList.remove('dark-mode');
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-        localStorage.setItem('darkMode', 'disabled');
+      ms.textContent = '—';
     }
-}
+  }
 
-function checkSystemPreference() {
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-}
+  function render(data) {
+    var targets = (data && data.targets) || {};
+    var ok = 0, bad = 0, unk = 0;
 
-function initializeDarkMode() {
-    const userPreference = localStorage.getItem('darkMode');
-    if (userPreference === 'enabled') {
-        setDarkMode(true);
-    } else if (userPreference === 'disabled') {
-        setDarkMode(false);
-    } else {
-        setDarkMode(checkSystemPreference());
-    }
-}
+    items.forEach(function (li) {
+      var rec = targets[li.dataset.key] || null;
+      paint(li, rec);
+      var st = li.dataset.state;
+      if (st === 'ok') ok++;
+      else if (st === 'unknown') unk++;
+      else bad++;
+    });
 
-// 初始化暗黑模式
-initializeDarkMode();
+    $('cntOk').textContent = ok;
+    $('cntBad').textContent = bad;
+    $('cntUnk').textContent = unk;
+    $('lastChecked').textContent = data ? fmtAgo(data.updated) : '暂无数据';
 
-// 监听系统主题变化
-window.matchMedia('(prefers-color-scheme: dark)').addListener((e) => {
-    if (localStorage.getItem('darkMode') === null) {
-        setDarkMode(e.matches);
-    }
-});
+    var tip = $('staleTip');
+    var stale = !!(data && data.updated && (Date.now() - new Date(data.updated).getTime()) > STALE_MS);
+    if (data) tip.textContent = '检测数据已超过 40 分钟未更新，仅供参考。';
+    tip.classList.toggle('show', stale);
+  }
 
-// 切换按钮点击事件
-modeToggle.addEventListener('click', () => {
-    setDarkMode(!body.classList.contains('dark-mode'));
-});
+  /* ===== 刷新 ===== */
+  var busy = false;
 
-// 收藏按钮功能
-document.querySelector('.bookmark-btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    if (window.sidebar && window.sidebar.addPanel) { // Mozilla Firefox Bookmark
-        window.sidebar.addPanel(document.title, window.location.href, '');
-    } else if (window.external && ('AddFavorite' in window.external)) { // IE Favorite
-        window.external.AddFavorite(location.href, document.title);
-    } else if (window.opera && window.print) { // Opera Hotlist
-        this.title = document.title;
-        return true;
-    } else { // webkit - safari/chrome
-        alert('请使用' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL') + ' + D 添加到收藏夹。');
-    }
-});
+  function refresh() {
+    if (busy) return;
+    busy = true;
+    var btn = $('refreshBtn');
+    btn.disabled = true;
+    btn.textContent = '检测中…';
+
+    var p = REALTIME_API ? loadRealtime().catch(function () { return null; }) : Promise.resolve(null);
+
+    p.then(function (rt) {
+      return rt || loadLocalStatus();
+    }).then(function (data) {
+      render(data);
+      if (!data) {
+        $('staleTip').textContent = '未取到检测结果（status.js 缺失或本地预览），请稍后再试。';
+        $('staleTip').classList.add('show');
+      }
+    }).catch(function () {
+      render(null);
+    }).then(function () {
+      busy = false;
+      btn.disabled = false;
+      btn.textContent = '重新检测';
+    });
+  }
+
+  $('refreshBtn').addEventListener('click', refresh);
+  refresh();
+
+  setInterval(function () {
+    if (document.visibilityState === 'visible') refresh();
+  }, AUTO_REFRESH_MS);
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible') refresh();
+  });
+})();
 </script>
 </body>
 </html>

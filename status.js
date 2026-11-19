@@ -1,0 +1,1 @@
+window.__PROBE_STATUS__ = {"updated":"2026-11-19T07:54:05.679Z","source":"github-actions","cost_ms":18082,"targets":{"main":{"state":"ok","status":200,"ms":289,"note":""},"backup":{"state":"ok","status":200,"ms":648,"note":""},"tg":{"state":"down","status":0,"ms":9003,"note":"超时"},"status":{"state":"ok","status":200,"ms":345,"note":""}}};
