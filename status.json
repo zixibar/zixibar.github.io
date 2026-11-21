@@ -1,30 +1,30 @@
 {
-  "updated": "2026-11-21T17:41:38.081Z",
+  "updated": "2026-11-21T22:28:10.954Z",
   "source": "github-actions",
-  "cost_ms": 2911,
+  "cost_ms": 2842,
   "targets": {
     "main": {
       "state": "blocked",
       "status": 403,
-      "ms": 789,
+      "ms": 305,
       "note": "被拦截"
     },
     "backup": {
       "state": "blocked",
       "status": 403,
-      "ms": 823,
+      "ms": 1050,
       "note": "被拦截"
     },
     "tg": {
       "state": "ok",
       "status": 200,
-      "ms": 910,
+      "ms": 653,
       "note": ""
     },
     "status": {
       "state": "ok",
       "status": 200,
-      "ms": 747,
+      "ms": 437,
       "note": ""
     }
   }
